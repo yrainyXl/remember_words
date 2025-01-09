@@ -21,8 +21,8 @@ jobs:
       # 部署到目标服务器
       - name: Deploy to server
         env:
-          SERVER_IP: ${{ secrets.SERVER_IP }}
-          SERVER_USER: ${{ secrets.SERVER_USER }}
+          SERVER_IP: ${{ vars.SERVER_IP }}
+          SERVER_USER: ${{ vars.SERVER_USER }}
           PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
         run: |
           # 创建 SSH 私钥文件
