@@ -1,0 +1,29 @@
+name: Build and Deploy
+
+on:
+  push:
+    branches:
+      - master # 监听 master 分支的推送事件
+  pull_request:
+    branches:
+      - master # 监听 pull request 合并到 mastur 分支
+
+jobs:
+  build:
+    runs-on: centons-latest
+
+    steps:
+      # 安装依赖并构建
+      - name: package
+        run: |
+          mvn clean package -DskipTests
+
+      # 部署到目标服务器
+      - name: Deploy to server
+        env:
+          SERVER_IP: ${{ secrets.SERVER_IP }}
+          SERVER_USER: ${{ secrets.SERVER_USER }}
+          PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
+        run: |
+          scp -r ./build/* $SERVER_USER@$SERVER_IP:/home/sa_cluster/app/remember_words
+          /home/sa_cluster/app/remember_words/run.sh restart
