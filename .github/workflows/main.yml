@@ -15,8 +15,9 @@ jobs:
     steps:
       # 安装依赖并构建
       - name: package
+        working-directory: ./remember_words
         run: |
-          mvn clean package -DskipTests
+          mvn clean package 
 
       # 部署到目标服务器
       - name: Deploy to server
