@@ -19,10 +19,20 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="REBASE" />
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="2rHhMntPlxooFPQDkXbTZ5QrUX0" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -54,15 +64,7 @@
   </component>
   <component name="RestServicesNavigator">
     <treeState>
-      <expand>
-        <path>
-          <item name="Found 2 services " type="fcff1e1b:RestServiceStructure$RootNode" />
-        </path>
-        <path>
-          <item name="Found 2 services " type="fcff1e1b:RestServiceStructure$RootNode" />
-          <item name="remember_words" type="c588b436:RestServiceStructure$ProjectNode" />
-        </path>
-      </expand>
+      <expand />
       <select />
     </treeState>
   </component>
@@ -111,6 +113,8 @@
         <item itemvalue="Spring Boot.RememberWord" />
         <item itemvalue="Application.QiWeiWebhookPush" />
         <item itemvalue="Application.MD5Utils" />
+        <item itemvalue="Spring Boot.RememberWord" />
+        <item itemvalue="Application.QiWeiWebhookPush" />
       </list>
     </recent_temporary>
   </component>
@@ -130,6 +134,29 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="main" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
