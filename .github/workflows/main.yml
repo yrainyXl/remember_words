@@ -37,7 +37,7 @@ jobs:
           # 创建 SSH 私钥文件
           echo "${{ secrets.PRIVATE_KEY }}" > id_rsa
           chmod 600 id_rsa
-          scp -o StrictHostKeyChecking=no -i id_rsa -r ./target/* $SERVER_USER@$SERVER_IP:/home/sa_cluster/app/remember_words/
+          scp -o StrictHostKeyChecking=no -i id_rsa -r ./target/*-exec.jar $SERVER_USER@$SERVER_IP:/home/sa_cluster/app/remember_words/
           ssh -o StrictHostKeyChecking=no -i id_rsa $SERVER_USER@$SERVER_IP "bash /home/sa_cluster/app/remember_words/run.sh restart"
 
       - name: Clean up private key
