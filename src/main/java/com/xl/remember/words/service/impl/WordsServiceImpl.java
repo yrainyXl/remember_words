@@ -65,7 +65,7 @@ public class WordsServiceImpl implements WordsService {
     }
     Words newWords = new Words();
     LocalDateTime now = LocalDateTime.now();
-    newWords.setWord(words);
+    newWords.setWord(words.toLowerCase());
     newWords.setReviewCount(FIRST_REVIEW.getReviewCount());
     newWords.setCreateTime(now);
     newWords.setUpdateTime(now);
