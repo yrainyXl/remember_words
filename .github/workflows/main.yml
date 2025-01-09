@@ -6,11 +6,11 @@ on:
       - master # 监听 master 分支的推送事件
   pull_request:
     branches:
-      - master # 监听 pull request 合并到 mastur 分支
+      - master # 监听 pull request 合并到 master 分支
 
 jobs:
   build:
-    runs-on: centons-latest
+    runs-on: ubuntu-latest
 
     steps:
       # 安装依赖并构建
@@ -25,5 +25,15 @@ jobs:
           SERVER_USER: ${{ secrets.SERVER_USER }}
           PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
         run: |
-          scp -r ./build/* $SERVER_USER@$SERVER_IP:/home/sa_cluster/app/remember_words
-          /home/sa_cluster/app/remember_words/run.sh restart
+          # 创建 SSH 私钥文件
+          echo "${{ secrets.PRIVATE_KEY }}" > id_rsa
+          chmod 600 id_rsa
+
+          # 部署到目标服务器
+          scp -i id_rsa -r ./target/* $SERVER_USER@$SERVER_IP:/home/sa_cluster/app/remember_words/
+
+          # 远程执行重启脚本
+          ssh -i id_rsa $SERVER_USER@$SERVER_IP "bash /home/sa_cluster/app/remember_words/run.sh restart"
+
+          # 清理私钥文件
+          rm -f id_rsa
