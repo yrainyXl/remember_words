@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>单词录入工具</title>
+  <style>
+    /* 全局样式 */
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #f3f4f6, #e0e7ff);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      color: #333;
+    }
+
+    /* 容器样式 */
+    #app {
+      background: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      padding: 20px 30px;
+      text-align: center;
+      width: 300px;
+    }
+
+    /* 标题样式 */
+    h1 {
+      font-size: 20px;
+      margin-bottom: 20px;
+      color: #4f46e5;
+    }
+
+    /* 输入框样式 */
+    #wordInput {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #d1d5db;
+      border-radius: 6px;
+      font-size: 16px;
+      box-sizing: border-box;
+      outline: none;
+      transition: border-color 0.2s ease;
+    }
+    #wordInput:focus {
+      border-color: #4f46e5;
+    }
+
+    /* 按钮样式 */
+    #submitButton {
+      width: 100%;
+      padding: 10px;
+      background: #4f46e5;
+      color: #ffffff;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+    }
+    #submitButton:hover {
+      background: #3b3cdd;
+    }
+    #message {
+      visibility: hidden; /* 初始隐藏 */
+      opacity: 0;         /* 初始透明 */
+      transition: opacity 0.5s ease, visibility 0.5s ease;
+    }
+    #message.show {
+      visibility: visible; /* 显示元素 */
+      opacity: 1;          /* 设置不透明 */
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <h1>单词录入</h1>
+    <input type="text" id="wordInput" placeholder="请输入单词" />
+    <button id="submitButton">提交</button>
+    <p id="message" style="font-size: 14px;"></p>
+  </div>
+  <script src="./main.js"></script>
+</body>
+</html>

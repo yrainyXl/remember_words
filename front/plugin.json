@@ -1,0 +1,18 @@
+{
+    "pluginName": "单词录入",
+    "description": "通过输入框快速保存单词到数据库",
+    "main": "index.html",
+    "version": "1.0.0",
+    "author": "YourName",
+    "logo": "logo.png",
+    "features": [
+      {
+        "code": "save_word",
+        "explain": "快速保存单词",
+        "cmds": [
+          "录入单词"
+        ]
+      }
+    ]
+  }
+  
