@@ -1,0 +1,45 @@
+name: Build and Deploy
+
+on:
+  push:
+    branches:
+      - master # 监听 master 分支的推送事件
+  pull_request:
+    branches:
+      - master # 监听 pull request 合并到 master 分支
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up JDK 8
+        uses: actions/setup-java@v4
+        with:
+          java-version: '8'
+          distribution: 'temurin'
+          server-id: github # Value of the distributionManagement/repository/id field of the pom.xml
+          settings-path: ${{ github.workspace }} # location for the settings.xml file
+          
+      # 安装依赖并构建
+      - name: package
+        run: |
+          mvn clean package 
+
+      # 部署到目标服务器
+      - name: Deploy to server
+        env:
+          SERVER_IP: ${{ vars.SERVER_IP }}
+          SERVER_USER: ${{ vars.SERVER_USER }}
+          PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
+        run: |
+          # 创建 SSH 私钥文件
+          echo "${{ secrets.PRIVATE_KEY }}" > id_rsa
+          chmod 600 id_rsa
+          scp -o StrictHostKeyChecking=no -i id_rsa -r ./target/*-exec.jar $SERVER_USER@$SERVER_IP:/home/sa_cluster/app/remember_words/
+          ssh -o StrictHostKeyChecking=no -i id_rsa $SERVER_USER@$SERVER_IP "bash /home/sa_cluster/app/remember_words/run.sh restart"
+
+      - name: Clean up private key
+        run: rm -f id_rsa
+
