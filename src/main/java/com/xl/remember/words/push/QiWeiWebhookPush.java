@@ -21,13 +21,8 @@ import java.util.List;
 @Slf4j
 public class QiWeiWebhookPush {
 
-  //todo 改为数据库
-  private static final String WEBHOOK_URL =
-      "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=1591a444-b260-4a74-94d1-5ee8c3351fdb";
-
-  public static void pushMessage(List<Words> wordsList) {
-    String url = WEBHOOK_URL;
-    HttpResponse httpResponse = HttpRequest.post(WEBHOOK_URL)
+  public static void pushMessage(List<Words> wordsList,String webhookUrl) {
+    HttpResponse httpResponse = HttpRequest.post(webhookUrl)
         .body(makeBody(wordsList))
         .header("Content-Type", "application/json")
         .execute();
@@ -53,10 +48,4 @@ public class QiWeiWebhookPush {
     return obj.toString();
   }
 
-  public static void main(String[] args) {
-    List<Words> wordsList = new ArrayList<>();
-    wordsList.add(new Words(1l,"apple", "苹果", "apple", "apple", 0, 0, null, null, null));
-    wordsList.add(new Words(1l,"words", "单词", "apple", "apple", 0, 0, null, null, null));
-    pushMessage(wordsList);
-  }
 }

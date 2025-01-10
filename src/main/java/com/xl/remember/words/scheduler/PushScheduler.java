@@ -6,6 +6,7 @@ import com.xl.remember.words.push.QiWeiWebhookPush;
 import com.xl.remember.words.service.WordsService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
@@ -24,6 +25,9 @@ public class PushScheduler {
   @Autowired
   WordsService wordsService;
 
+  @Value("${webhook.url}")
+  String webhookUrl;
+
 
 //  @Scheduled(cron = "0 0 10,18 * * ?")
   @Scheduled(cron = "0 0/30 * * * ?")
@@ -33,7 +37,7 @@ public class PushScheduler {
     List<Words> needReviewWordsList = wordsService.getNeedReviewWordsList();
     if(CollectionUtil.isNotEmpty(needReviewWordsList)){
       log.info("start push words");
-      QiWeiWebhookPush.pushMessage(needReviewWordsList);
+      QiWeiWebhookPush.pushMessage(needReviewWordsList,webhookUrl);
       //更新状态
       wordsService.updateWordsReviewStatus(needReviewWordsList);
     }

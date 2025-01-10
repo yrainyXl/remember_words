@@ -32,3 +32,7 @@ translate:
     appId: 20240809002119631
     secret: qNBmdRfBe6ufJO2sowwX
     url: https://fanyi-api.baidu.com/api/trans/vip/translate
+
+
+webhook:
+  url: https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=a8f48b1d-1b05-46ac-ba48-2dac8ac112a1
